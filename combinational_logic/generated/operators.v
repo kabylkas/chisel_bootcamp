@@ -1,0 +1,18 @@
+module operators( // @[:@3.2]
+  input        clock, // @[:@4.4]
+  input        reset, // @[:@5.4]
+  input  [3:0] io_in, // @[:@6.4]
+  output [3:0] io_out_add, // @[:@6.4]
+  output [3:0] io_out_sub, // @[:@6.4]
+  output [3:0] io_out_mul // @[:@6.4]
+);
+  wire [3:0] _T_19; // @[combinational_logic.scala 15:21:@11.4]
+  wire [3:0] _T_20; // @[combinational_logic.scala 15:21:@12.4]
+  wire [2:0] _T_21; // @[combinational_logic.scala 15:21:@13.4]
+  assign _T_19 = 3'h7 - 3'h2; // @[combinational_logic.scala 15:21:@11.4]
+  assign _T_20 = $unsigned(_T_19); // @[combinational_logic.scala 15:21:@12.4]
+  assign _T_21 = _T_20[2:0]; // @[combinational_logic.scala 15:21:@13.4]
+  assign io_out_add = 4'h5; // @[combinational_logic.scala 14:14:@10.4]
+  assign io_out_sub = {{1'd0}, _T_21}; // @[combinational_logic.scala 15:14:@14.4]
+  assign io_out_mul = 2'h2 * 2'h3; // @[combinational_logic.scala 16:14:@16.4]
+endmodule
