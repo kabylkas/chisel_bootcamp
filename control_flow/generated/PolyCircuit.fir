@@ -1,0 +1,48 @@
+;buildInfoPackage: chisel3, version: 3.1.7, scalaVersion: 2.11.12, sbtVersion: 1.1.1, builtAtString: 2019-03-20 22:15:13.399, builtAtMillis: 1553120113399
+circuit PolyCircuit : 
+  module PolyCircuit : 
+    input clock : Clock
+    input reset : UInt<1>
+    output io : {flip select : UInt<2>, flip x : SInt<32>, fofx : SInt<32>}
+    
+    wire result : SInt<32> @[exercise1.scala 14:20]
+    wire x_sq : SInt<32> @[exercise1.scala 15:18]
+    node _T_13 = mul(io.x, io.x) @[exercise1.scala 17:16]
+    x_sq <= _T_13 @[exercise1.scala 17:8]
+    node _T_15 = eq(io.select, UInt<1>("h00")) @[exercise1.scala 19:19]
+    when _T_15 : @[exercise1.scala 19:28]
+      node _T_17 = mul(asSInt(UInt<3>("h02")), io.x) @[exercise1.scala 20:26]
+      node _T_18 = sub(x_sq, _T_17) @[exercise1.scala 20:20]
+      node _T_19 = tail(_T_18, 1) @[exercise1.scala 20:20]
+      node _T_20 = asSInt(_T_19) @[exercise1.scala 20:20]
+      node _T_22 = add(_T_20, asSInt(UInt<2>("h01"))) @[exercise1.scala 20:33]
+      node _T_23 = tail(_T_22, 1) @[exercise1.scala 20:33]
+      node _T_24 = asSInt(_T_23) @[exercise1.scala 20:33]
+      result <= _T_24 @[exercise1.scala 20:12]
+      skip @[exercise1.scala 19:28]
+    else : @[exercise1.scala 21:35]
+      node _T_26 = eq(io.select, UInt<1>("h01")) @[exercise1.scala 21:26]
+      when _T_26 : @[exercise1.scala 21:35]
+        node _T_28 = mul(asSInt(UInt<3>("h02")), x_sq) @[exercise1.scala 22:19]
+        node _T_30 = mul(asSInt(UInt<4>("h06")), io.x) @[exercise1.scala 22:32]
+        node _T_31 = add(_T_28, _T_30) @[exercise1.scala 22:26]
+        node _T_32 = tail(_T_31, 1) @[exercise1.scala 22:26]
+        node _T_33 = asSInt(_T_32) @[exercise1.scala 22:26]
+        node _T_35 = add(_T_33, asSInt(UInt<3>("h03"))) @[exercise1.scala 22:39]
+        node _T_36 = tail(_T_35, 1) @[exercise1.scala 22:39]
+        node _T_37 = asSInt(_T_36) @[exercise1.scala 22:39]
+        result <= _T_37 @[exercise1.scala 22:12]
+        skip @[exercise1.scala 21:35]
+      else : @[exercise1.scala 23:16]
+        node _T_39 = mul(asSInt(UInt<4>("h04")), x_sq) @[exercise1.scala 24:19]
+        node _T_41 = mul(asSInt(UInt<5>("h0a")), io.x) @[exercise1.scala 24:33]
+        node _T_42 = sub(_T_39, _T_41) @[exercise1.scala 24:26]
+        node _T_43 = tail(_T_42, 1) @[exercise1.scala 24:26]
+        node _T_44 = asSInt(_T_43) @[exercise1.scala 24:26]
+        node _T_46 = sub(_T_44, asSInt(UInt<4>("h05"))) @[exercise1.scala 24:40]
+        node _T_47 = tail(_T_46, 1) @[exercise1.scala 24:40]
+        node _T_48 = asSInt(_T_47) @[exercise1.scala 24:40]
+        result <= _T_48 @[exercise1.scala 24:12]
+        skip @[exercise1.scala 23:16]
+    io.fofx <= result @[exercise1.scala 27:11]
+    
